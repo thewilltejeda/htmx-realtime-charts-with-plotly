@@ -1,0 +1,6 @@
+plotly
+fastapi
+uvicorn
+jinja2
+requests
+yfinance

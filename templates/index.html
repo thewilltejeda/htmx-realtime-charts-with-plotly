@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Finacial Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/htmx.org@1.9.2"></script>
+    <script charset="utf-8" src="https://cdn.plot.ly/plotly-2.24.1.min.js"></script>
+
+
+    <style>
+        .fade-me-in.htmx-swapping {
+            opacity: 1;
+            transition: opacity 1s ease-in-out;
+        }
+    </style>
+
+
+</head>
+<body class="m-0 bg-black">
+
+
+        <div class="w-screen h-screen grid grid-cols-2 justify-center items-center">
+        {% for stock in stocks %}
+
+            <div 
+                class="fade-me-in"
+                hx-get="/api/get_chart/{{ stock }}/"
+                hx-swap="innerHTML swap:1s transition:true"
+                hx-trigger="load, every 300s"
+            >
+            
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
